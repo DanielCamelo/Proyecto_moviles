@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Datos</title>
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+  <!-- Onsen UI CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.css">
+
+  <!-- Onsen UI JavaScript -->
+  <script src="https://unpkg.com/onsenui/js/onsenui.js"></script>
+</head>
+<body>
+
+  <ons-page>
+    <ons-toolbar>
+      <div class="center">Registro de Datos</div>
+    </ons-toolbar>
+    
+    <!-- Permite buscar un usuario específico en la base de datos -->
+    <ons-search-input style="width: 100%;" placeholder="Buscar"></ons-search-input>
+
+    <!-- Botón que permite ir a registrar un usuario en la base de datos -->
+    <ons-button onclick="window.location.href = 'js/registro.html';">registrar</ons-button>
+    <ons-list-header>Lista de Usuarios</ons-list-header>
+
+    <!-- Lista de usuarios existentes -->
+    <ons-list id="listaUsuarios">
+    </ons-list>
+  </ons-page>
+
+</body>
+</html>

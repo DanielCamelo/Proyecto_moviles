@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Usuario</title>
+  <script type="text/javascript" src="../cordova.js"></script>
+  <script type="text/javascript" src="index.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/index.css">
+
+  <!-- Onsen UI CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.css">
+
+  <!-- Onsen UI JavaScript -->
+  <script src="https://unpkg.com/onsenui/js/onsenui.js"></script>
+</head>
+<body>
+
+  <ons-page>
+    <ons-toolbar>
+      <div class="left">
+        <!-- Botón de retroceso -->
+        <ons-back-button onclick="window.location.href = '../index.html';">Atrás</ons-back-button>
+      </div>
+      <div class="center">Registro de Usuario</div>
+    </ons-toolbar>
+
+    <ons-list>
+      <ons-list-item>
+        <div class="center">
+          <input id="nombre" type="text" placeholder="Nombre">
+        </div>
+      </ons-list-item>
+
+      <ons-list-item>
+        <div class="center">
+          <input id="email" type="email" placeholder="Email">
+        </div>
+      </ons-list-item>
+
+      <ons-list-item>
+        <div class="center">
+          <input id="username" type="text" placeholder="Nombre de usuario">
+        </div>
+      </ons-list-item>
+
+      <ons-list-item>
+        <div class="center">
+          <input id="password" type="password" placeholder="Contraseña">
+        </div>
+      </ons-list-item>
+
+      <ons-list-item>
+        <div class="center">
+          <input id="telefono" type="tel" placeholder="Teléfono">
+        </div>
+      </ons-list-item>
+    </ons-list>
+
+    <ons-button onclick="Registrar()">guardar</ons-button>
+
+  </ons-page>
+
+</body>
+</html>
