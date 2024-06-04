@@ -155,3 +155,23 @@
         <ons-button onclick="closeSettingsDialog()">Cerrar</ons-button>
       </div>
     </ons-dialog>
+    <ons-dialog id="auth-dialog" class="auth-dialog">
+      <div class="content dialog-content">
+          <ons-list>
+              <ons-list-header>Autenticación</ons-list-header>
+              <ons-list-item>
+                  <div class="center">
+                      <ons-input id="auth-username" placeholder="Usuario" float></ons-input>
+                  </div>
+              </ons-list-item>
+              <ons-list-item>
+                  <div class="center">
+                      <ons-input id="auth-password" placeholder="Contraseña" type="password" float></ons-input>
+                  </div>
+              </ons-list-item>
+          </ons-list>
+          <ons-button onclick="login()">Iniciar Sesión</ons-button>
+          <ons-button onclick="goToRegister()">Registrarse</ons-button>
+          <ons-button onclick="closeAuthDialog()">Cerrar</ons-button>
+      </div>
+  </ons-dialog>
