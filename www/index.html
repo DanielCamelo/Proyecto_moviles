@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <>
-<head>
+
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Gestión de Tareas</title>
@@ -10,109 +11,147 @@
     <script src="cordova.js"></script>
     <script src="js/index.js" defer></script>
     <style>
-        .theme-light {
-            --background-color: #f0f0f5;
-            --text-color: #333333;
-            --primary-color: #87CEEB;
-            --toolbar-color: #ADD8E6;
-            --button-color: #B0E0E6;
-        }
-        .theme-dark {
-            --background-color: #1a1a1a;
-            --text-color: #ffffff;
-            --primary-color: #4CAF50;
-            --toolbar-color: #333333;
-            --button-color: #444444;
-        }
-        body {
-            background-color: var(--background-color);
-            color: var(--text-color);
-        }
-        ons-toolbar {
-            background-color: var(--toolbar-color);
-        }
-        ons-list-item, ons-button {
-            background-color: var(--button-color);
-            color: var(--text-color);
-        }
-        ons-fab {
-            background-color: var(--primary-color);
-            color: var(--text-color);
-        }
-        .settings-fab {
-            bottom: 90px !important;
-        }
-        .dialog-content {
-            padding: 16px;
-        }
-        .auth-dialog, .register-dialog {
-            width: 80%;
-            max-width: 400px;
-            margin: auto;
-        }
+      .theme-light {
+        --background-color: #f0f0f5;
+        --text-color: #333333;
+        --primary-color: #87CEEB;
+        --toolbar-color: #ADD8E6;
+        --button-color: #B0E0E6;
+      }
+
+      .theme-dark {
+        --background-color: #1a1a1a;
+        --text-color: #ffffff;
+        --primary-color: #4CAF50;
+        --toolbar-color: #333333;
+        --button-color: #444444;
+      }
+
+      body {
+        background-color: var(--background-color);
+        color: var(--text-color);
+      }
+
+      ons-toolbar {
+        background-color: var(--toolbar-color);
+      }
+
+      ons-list-item,
+      ons-button {
+        background-color: var(--button-color);
+        color: var(--text-color);
+      }
+
+      ons-fab {
+        background-color: var(--primary-color);
+        color: var(--text-color);
+      }
+
+      .settings-fab {
+        bottom: 90px !important;
+      }
+
+      .dialog-content {
+        padding: 16px;
+      }
+
+      .auth-dialog,
+      .register-dialog {
+        width: 80%;
+        max-width: 400px;
+        margin: auto;
+      }
     </style>
-</head> 
-<body>
+  </head>
+
+  <body>
     <ons-page>
-        <ons-toolbar>
-            <div class="center">Gestión de Tareas</div>
-            <div class="right">
-                <span id="username-display" style="margin-right: 10px;"></span>
-                <ons-toolbar-button onclick="showAuthDialog()">
-                    <ons-icon icon="md-account"></ons-icon>
-                </ons-toolbar-button>
-            </div>
-        </ons-toolbar>
-        <ons-list id="task-list">
-            <!-- Lista de tareas se genera dinámicamente aquí -->
-        </ons-list>
-        <ons-fab position="bottom right" onclick="showTaskForm()">
-            <ons-icon icon="md-plus"></ons-icon>
-        </ons-fab>
-        <ons-fab position="bottom right" class="settings-fab" onclick="showSettingsDialog()">
-            <ons-icon icon="md-settings"></ons-icon>
-        </ons-fab>
+      <ons-toolbar>
+        <div class="center">Gestión de Tareas</div>
+        <div class="right">
+          <span id="username-display" style="margin-right: 10px;"></span>
+          <ons-toolbar-button onclick="showAuthDialog()">
+            <ons-icon icon="md-account"></ons-icon>
+          </ons-toolbar-button>
+        </div>
+      </ons-toolbar>
+      <ons-list id="task-list">
+        <!-- Lista de tareas se genera dinámicamente aquí -->
+      </ons-list>
+      <ons-fab position="bottom right" onclick="showTaskForm()">
+        <ons-icon icon="md-plus"></ons-icon>
+      </ons-fab>
+      <ons-fab position="bottom right" class="settings-fab" onclick="showSettingsDialog()">
+        <ons-icon icon="md-settings"></ons-icon>
+      </ons-fab>
     </ons-page>
     <ons-dialog id="task-dialog">
-        <div class="content dialog-content">
-            <ons-list>
-                <ons-list-item>
-                    <div class="center">
-                        <ons-input id="task-title" placeholder="Título de la tarea" float></ons-input>
-                    </div>
-                </ons-list-item>
-                <ons-list-item>
-                    <div class="center">
-                        <ons-input id="task-desc" placeholder="Descripción" float></ons-input>
-                    </div>
-                </ons-list-item>
-                <ons-list-item>
-                    <div class="center">
-                        <ons-input id="task-date" placeholder="Fecha de vencimiento" type="date" float></ons-input>
-                    </div>
-                </ons-list-item>
-                <ons-list-item>
-                    <div class="center">
-                        <ons-input id="task-reminder" placeholder="Recordatorio (YYYY-MM-DD HH:MM)" type="datetime-local" float></ons-input>
-                    </div>
-                </ons-list-item>
-                <ons-list-item>
-                    <div class="center">
-                        <ons-input id="task-notes" placeholder="Notas" float></ons-input>
-                    </div>
-                </ons-list-item>
-                <ons-list-item>
-                    <div class="center">
-                        <ons-select id="task-priority">
-                            <option value="low">Baja</option>
-                            <option value="medium">Media</option>
-                            <option value="high">Alta</option>
-                        </ons-select>
-                    </div>
-                </ons-list-item>
-            </ons-list>
-            <ons-button id="save-task-btn" onclick="saveTask()">Guardar Tarea</ons-button>
-            <ons-button id="update-task-btn" onclick="updateTask()">Actualizar Tarea</ons-button>
-            <ons-button id="close-dialog-btn" onclick="closeTaskDialog()">Cerrar</ons-button>
-        </div>
+      <div class="content dialog-content">
+        <ons-list>
+          <ons-list-item>
+            <div class="center">
+              <ons-input id="task-title" placeholder="Título de la tarea" float></ons-input>
+            </div>
+          </ons-list-item>
+          <ons-list-item>
+            <div class="center">
+              <ons-input id="task-desc" placeholder="Descripción" float></ons-input>
+            </div>
+          </ons-list-item>
+          <ons-list-item>
+            <div class="center">
+              <ons-input id="task-date" placeholder="Fecha de vencimiento" type="date" float></ons-input>
+            </div>
+          </ons-list-item>
+          <ons-list-item>
+            <div class="center">
+              <ons-input id="task-reminder" placeholder="Recordatorio (YYYY-MM-DD HH:MM)" type="datetime-local"
+                float></ons-input>
+            </div>
+          </ons-list-item>
+          <ons-list-item>
+            <div class="center">
+              <ons-input id="task-notes" placeholder="Notas" float></ons-input>
+            </div>
+          </ons-list-item>
+          <ons-list-item>
+            <div class="center">
+              <ons-select id="task-priority">
+                <option value="low">Baja</option>
+                <option value="medium">Media</option>
+                <option value="high">Alta</option>
+              </ons-select>
+            </div>
+          </ons-list-item>
+        </ons-list>
+        <ons-button id="save-task-btn" onclick="saveTask()">Guardar Tarea</ons-button>
+        <ons-button id="update-task-btn" onclick="updateTask()">Actualizar Tarea</ons-button>
+        <ons-button id="close-dialog-btn" onclick="closeTaskDialog()">Cerrar</ons-button>
+      </div>
+    </ons-dialog>
+    <ons-dialog id="settings-dialog">
+      <div class="content dialog-content">
+        <ons-list>
+          <ons-list-header>Seleccionar Tema</ons-list-header>
+          <ons-list-item tappable onclick="setTheme('theme-light')">
+            Tema Claro
+          </ons-list-item>
+          <ons-list-item tappable onclick="setTheme('theme-dark')">
+            Tema Oscuro
+          </ons-list-item>
+        </ons-list>
+        <ons-list>
+          <ons-list-header>Seleccionar Sonido de Notificación</ons-list-header>
+          <ons-list-item>
+            <div class="center">
+              <ons-select id="notification-sound" onchange="setNotificationSound(this.value)">
+                <option value="default">Default</option>
+                <option value="alert">Alert</option>
+                <option value="chime">Chime</option>
+              </ons-select>
+            </div>
+          </ons-list-item>
+        </ons-list>
+        <ons-button onclick="closeSettingsDialog()">Cerrar</ons-button>
+      </div>
     </ons-dialog>
