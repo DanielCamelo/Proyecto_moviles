@@ -225,3 +225,51 @@ function login() {
         });
     });
 }
+function displayUsername() {
+    var username = localStorage.getItem('currentUsername');
+    if (username) {
+        document.getElementById('username-display').textContent = username;
+    }
+}
+
+function goToRegister() {
+    document.getElementById('auth-dialog').hide();
+    document.getElementById('register-dialog').show();
+}
+
+function goToLogin() {
+    document.getElementById('register-dialog').hide();
+    document.getElementById('auth-dialog').show();
+}
+
+function closeRegisterDialog() {
+    document.getElementById('register-dialog').hide();
+}
+
+function register() {
+    var username = document.getElementById('register-username').value;
+    var password = document.getElementById('register-password').value;
+    var passwordConfirm = document.getElementById('register-password-confirm').value;
+
+    if (password !== passwordConfirm) {
+        alert('Las contraseñas no coinciden');
+        return;
+    }
+
+    var db = window.sqlitePlugin.openDatabase({ name: 'saveTask.db', location: 'default' });
+
+    db.transaction(function(tx) {
+        tx.executeSql('INSERT INTO users (username, password) VALUES (?, ?)', [username, password], function(tx, res) {
+            console.log('Usuario registrado con éxito');
+            alert('Registro exitoso');
+            goToLogin();
+        }, function(e) {
+            console.log('Error al registrar el usuario: ' + e.message);
+            alert('Error al registrar el usuario: ' + e.message);
+        }
+
+        );
+
+    }
+    );
+}
