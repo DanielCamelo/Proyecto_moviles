@@ -1,38 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registro de Datos</title>
-  <script type="text/javascript" src="cordova.js"></script>
-  <script type="text/javascript" src="js/index.js"></script>
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-
-  <!-- Onsen UI CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
-  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.css">
-
-  <!-- Onsen UI JavaScript -->
-  <script src="https://unpkg.com/onsenui/js/onsenui.js"></script>
-</head>
-<body>
-
-  <ons-page>
-    <ons-toolbar>
-      <div class="center">Registro de Datos</div>
-    </ons-toolbar>
-    
-    <!-- Permite buscar un usuario específico en la base de datos -->
-    <ons-search-input style="width: 100%;" placeholder="Buscar"></ons-search-input>
-
-    <!-- Botón que permite ir a registrar un usuario en la base de datos -->
-    <ons-button onclick="window.location.href = 'js/registro.html';">registrar</ons-button>
-    <ons-list-header>Lista de Usuarios</ons-list-header>
-
-    <!-- Lista de usuarios existentes -->
-    <ons-list id="listaUsuarios">
-    </ons-list>
-  </ons-page>
-
-</body>
-</html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Gestión de Tareas</title>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script src="cordova.js"></script>
+    <script src="js/index.js" defer></script>
+    <style>
+        .theme-light {
+            --background-color: #f0f0f5;
+            --text-color: #333333;
+            --primary-color: #87CEEB;
+            --toolbar-color: #ADD8E6;
+            --button-color: #B0E0E6;
+        }
+        .theme-dark {
+            --background-color: #1a1a1a;
+            --text-color: #ffffff;
+            --primary-color: #4CAF50;
+            --toolbar-color: #333333;
+            --button-color: #444444;
+        }
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+        ons-toolbar {
+            background-color: var(--toolbar-color);
+        }
+        ons-list-item, ons-button {
+            background-color: var(--button-color);
+            color: var(--text-color);
+        }
+        ons-fab {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+        }
+        .settings-fab {
+            bottom: 90px !important;
+        }
+        .dialog-content {
+            padding: 16px;
+        }
+        .auth-dialog, .register-dialog {
+            width: 80%;
+            max-width: 400px;
+            margin: auto;
+        }
+    </style>
+</head> 
