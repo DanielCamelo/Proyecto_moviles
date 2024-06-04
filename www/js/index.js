@@ -80,3 +80,107 @@ function saveTask() {
         });
     });
 }
+
+function loadTasks() {
+    var userId = localStorage.getItem('currentUser');
+    var db = window.sqlitePlugin.openDatabase({ name: 'saveTask.db', location: 'default' });
+
+    db.transaction(function(tx) {
+        tx.executeSql('SELECT * FROM tasks WHERE user_id = ?', [userId], function(tx, res) {
+            var taskList = document.getElementById('task-list');
+            taskList.innerHTML = '';
+
+            for (var i = 0; i < res.rows.length; i++) {
+                var task = res.rows.item(i);
+                var listItem = document.createElement('ons-list-item');
+                listItem.innerHTML = `
+                    <div class="center">
+                        <span class="list-item-title">${task.title}</span><br>
+                        <span class="list-item-desc">${task.desc}</span>
+                    </div>
+                    <div class="right">
+                        <ons-button modifier="quiet" onclick="editTask(${task.id})">Editar</ons-button>
+                        <ons-button modifier="quiet" onclick="deleteTask(${task.id})">Eliminar</ons-button>
+                    </div>`;
+                listItem.setAttribute('tappable', '');
+                taskList.appendChild(listItem);
+            }
+        }, function(e) {
+            console.log('Error al cargar las tareas: ' + e.message);
+        });
+    });
+}
+
+function editTask(taskId) {
+    var db = window.sqlitePlugin.openDatabase({ name: 'saveTask.db', location: 'default' });
+
+    db.transaction(function(tx) {
+        tx.executeSql('SELECT * FROM tasks WHERE id = ?', [taskId], function(tx, res) {
+            if (res.rows.length > 0) {
+                var task = res.rows.item(0);
+                document.getElementById('task-title').value = task.title;
+                document.getElementById('task-desc').value = task.desc;
+                document.getElementById('task-date').value = task.date;
+                document.getElementById('task-reminder').value = task.reminder;
+                document.getElementById('task-notes').value = task.notes;
+                document.getElementById('task-priority').value = task.priority;
+
+                document.getElementById('save-task-btn').style.display = 'none';
+                document.getElementById('update-task-btn').style.display = 'block';
+                document.getElementById('close-dialog-btn').style.display = 'block';
+                document.getElementById('update-task-btn').onclick = function() {
+                    updateTask(task.id);
+                };
+                document.getElementById('task-dialog').show();
+            }
+        }, function(e) {
+            console.log('Error al cargar los detalles de la tarea: ' + e.message);
+        });
+    });
+}
+
+function updateTask(taskId) {
+    var title = document.getElementById('task-title').value;
+    var desc = document.getElementById('task-desc').value;
+    var date = document.getElementById('task-date').value;
+    var reminder = document.getElementById('task-reminder').value;
+    var notes = document.getElementById('task-notes').value;
+    var priority = document.getElementById('task-priority').value;
+
+    var db = window.sqlitePlugin.openDatabase({ name: 'saveTask.db', location: 'default' });
+
+    db.transaction(function(tx) {
+        tx.executeSql('UPDATE tasks SET title = ?, desc = ?, date = ?, reminder = ?, notes = ?, priority = ? WHERE id = ?', [title, desc, date, reminder, notes, priority, taskId], function(tx, res) {
+            console.log('Tarea actualizada con éxito');
+            playNotificationSound();
+            ons.notification.toast('Tarea actualizada exitosamente.', { timeout: 2000 });
+            closeTaskDialog();
+            loadTasks();
+        }, function(e) {
+            console.log('Error al actualizar la tarea: ' + e.message);
+        });
+    });
+}
+
+function deleteTask(taskId) {
+    var db = window.sqlitePlugin.openDatabase({ name: 'saveTask.db', location: 'default' });
+
+    db.transaction(function(tx) {
+        tx.executeSql('DELETE FROM tasks WHERE id = ?', [taskId], function(tx, res) {
+            console.log('Tarea eliminada con éxito');
+            playNotificationSound();
+            ons.notification.toast('Tarea eliminada exitosamente.', { timeout: 2000 });
+            loadTasks();
+        }, function(e) {
+            console.log('Error al eliminar la tarea: ' + e.message);
+        });
+    });
+}
+
+function showAuthDialog() {
+    document.getElementById('auth-dialog').show();
+}
+
+function closeAuthDialog() {
+    document.getElementById('auth-dialog').hide();
+}
