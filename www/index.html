@@ -52,3 +52,24 @@
         }
     </style>
 </head> 
+<body>
+    <ons-page>
+        <ons-toolbar>
+            <div class="center">Gestión de Tareas</div>
+            <div class="right">
+                <span id="username-display" style="margin-right: 10px;"></span>
+                <ons-toolbar-button onclick="showAuthDialog()">
+                    <ons-icon icon="md-account"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+        </ons-toolbar>
+        <ons-list id="task-list">
+            <!-- Lista de tareas se genera dinámicamente aquí -->
+        </ons-list>
+        <ons-fab position="bottom right" onclick="showTaskForm()">
+            <ons-icon icon="md-plus"></ons-icon>
+        </ons-fab>
+        <ons-fab position="bottom right" class="settings-fab" onclick="showSettingsDialog()">
+            <ons-icon icon="md-settings"></ons-icon>
+        </ons-fab>
+    </ons-page>
