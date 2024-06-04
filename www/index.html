@@ -175,3 +175,30 @@
           <ons-button onclick="closeAuthDialog()">Cerrar</ons-button>
       </div>
   </ons-dialog>
+  <ons-dialog id="register-dialog" class="register-dialog">
+    <div class="content dialog-content">
+        <ons-list>
+            <ons-list-header>Registro</ons-list-header>
+            <ons-list-item>
+                <div class="center">
+                    <ons-input id="register-username" placeholder="Usuario" float></ons-input>
+                </div>
+            </ons-list-item>
+            <ons-list-item>
+                <div class="center">
+                    <ons-input id="register-password" placeholder="Contraseña" type="password" float></ons-input>
+                </div>
+            </ons-list-item>
+            <ons-list-item>
+                <div class="center">
+                    <ons-input id="register-password-confirm" placeholder="Confirmar Contraseña" type="password" float></ons-input>
+                </div>
+            </ons-list-item>
+        </ons-list>
+        <ons-button onclick="register()">Registrarse</ons-button>
+        <ons-button onclick="goToLogin()">Volver</ons-button>
+        <ons-button onclick="closeRegisterDialog()">Cerrar</ons-button>
+    </div>
+</ons-dialog>
+</body>
+</html>
