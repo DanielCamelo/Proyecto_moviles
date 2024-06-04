@@ -73,3 +73,46 @@
             <ons-icon icon="md-settings"></ons-icon>
         </ons-fab>
     </ons-page>
+    <ons-dialog id="task-dialog">
+        <div class="content dialog-content">
+            <ons-list>
+                <ons-list-item>
+                    <div class="center">
+                        <ons-input id="task-title" placeholder="Título de la tarea" float></ons-input>
+                    </div>
+                </ons-list-item>
+                <ons-list-item>
+                    <div class="center">
+                        <ons-input id="task-desc" placeholder="Descripción" float></ons-input>
+                    </div>
+                </ons-list-item>
+                <ons-list-item>
+                    <div class="center">
+                        <ons-input id="task-date" placeholder="Fecha de vencimiento" type="date" float></ons-input>
+                    </div>
+                </ons-list-item>
+                <ons-list-item>
+                    <div class="center">
+                        <ons-input id="task-reminder" placeholder="Recordatorio (YYYY-MM-DD HH:MM)" type="datetime-local" float></ons-input>
+                    </div>
+                </ons-list-item>
+                <ons-list-item>
+                    <div class="center">
+                        <ons-input id="task-notes" placeholder="Notas" float></ons-input>
+                    </div>
+                </ons-list-item>
+                <ons-list-item>
+                    <div class="center">
+                        <ons-select id="task-priority">
+                            <option value="low">Baja</option>
+                            <option value="medium">Media</option>
+                            <option value="high">Alta</option>
+                        </ons-select>
+                    </div>
+                </ons-list-item>
+            </ons-list>
+            <ons-button id="save-task-btn" onclick="saveTask()">Guardar Tarea</ons-button>
+            <ons-button id="update-task-btn" onclick="updateTask()">Actualizar Tarea</ons-button>
+            <ons-button id="close-dialog-btn" onclick="closeTaskDialog()">Cerrar</ons-button>
+        </div>
+    </ons-dialog>
