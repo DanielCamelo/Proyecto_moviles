@@ -184,3 +184,44 @@ function showAuthDialog() {
 function closeAuthDialog() {
     document.getElementById('auth-dialog').hide();
 }
+
+function showSettingsDialog() {
+    document.getElementById('settings-dialog').show();
+}
+
+function closeSettingsDialog() {
+    document.getElementById('settings-dialog').hide();
+}
+
+function setNotificationSound(sound) {
+    localStorage.setItem('notificationSound', sound);
+    console.log('Sonido de notificación seleccionado:', sound);
+}
+
+function setTheme(theme) {
+    document.body.className = theme;
+    localStorage.setItem('selectedTheme', theme);
+}
+function login() {
+    var username = document.getElementById('auth-username').value;
+    var password = document.getElementById('auth-password').value;
+
+    var db = window.sqlitePlugin.openDatabase({ name: 'saveTask.db', location: 'default' });
+
+    db.transaction(function(tx) {
+        tx.executeSql('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], function(tx, res) {
+            if (res.rows.length > 0) {
+                var user = res.rows.item(0);
+                localStorage.setItem('currentUser', user.id);
+                localStorage.setItem('currentUsername', user.username); // Guarda el nombre de usuario
+                closeAuthDialog();
+                loadTasks();
+                displayUsername(); // Muestra el nombre de usuario
+            } else {
+                alert('Usuario o contraseña incorrectos');
+            }
+        }, function(e) {
+            console.log('Error al iniciar sesión: ' + e.message);
+        });
+    });
+}
