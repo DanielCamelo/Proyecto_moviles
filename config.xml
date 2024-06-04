@@ -6,6 +6,7 @@
         Apache Cordova Team
     </author>
     <content src="index.html" />
-    <allow-intent href="http://*/*" />
-    <allow-intent href="https://*/*" />
+    <allow-intent href="http:///" />
+    <allow-intent href="https:///" />
+    <plugin name="cordova-sqlite-storage" source="npm" spec="^6.0.0" />
 </widget>
